@@ -1,2 +1,2 @@
 fastapi==0.103.2
-unicorn==2.0.1
+uvicorn==0.22.0
