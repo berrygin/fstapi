@@ -1,5 +1,5 @@
 ### 起動
 
 ```shell
-uvicorn main:app --reload 
+uvicorn myapp.main:app --reload 
 ```
