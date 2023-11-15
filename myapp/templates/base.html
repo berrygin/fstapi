@@ -4,7 +4,17 @@
         <title>Panel in FastAPI: sliders</title>
         <link rel="stylesheet" href="/myapp/static/css/styles.css">
     </head>
+
     <body>
+      <header>
+        {% include "includes/header.html" %}
+      </header>
+      <div class="sidebar">
+        <!-- サイドバーの内容をここに追加 -->
+        <h2>Sidebar</h2>
+        <p>Content goes here.</p>
+      </div>
+
         <h1>Panel in FastAPI: sliders</h1>
         {{ script|safe }}
     </body>

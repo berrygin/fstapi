@@ -1,1 +1,11 @@
-html {background: hotpink;}
+.header-bar {background: greenyellow;}
+
+body {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px; /* サイドバーの幅を設定 */
+  background-color: #f0f0f0; /* サイドバーの背景色を設定 */
+  padding: 20px; /* サイドバーの内側の余白を設定 */
+}

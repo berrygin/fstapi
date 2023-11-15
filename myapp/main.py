@@ -7,6 +7,7 @@ import panel as pn
 from bokeh.embed import server_document
 
 from myapp.sliders.pn_app import createApp
+from myapp.sliders2.pn_app2 import createApp2
 
 app = FastAPI()
 app.mount(path='/myapp/static', app=StaticFiles(directory='myapp/static'), name='static')
@@ -23,7 +24,12 @@ async def bkapp_page(request: Request):
     script = server_document('http://127.0.0.1:5000/app')
     return templates.TemplateResponse("base.html", {"request": request, "script": script})
 
-pn.serve({'/app': createApp},
+@app.get("/app2")
+async def bkapp_page2(request: Request):
+    script = server_document('http://127.0.0.1:5000/app2')
+    return templates.TemplateResponse("index.html", {"request": request, "script": script})
+
+pn.serve({'/app': createApp, '/app2': createApp2},
         port=5000, allow_websocket_origin=["127.0.0.1:8000"],
         address="127.0.0.1", show=False)
 

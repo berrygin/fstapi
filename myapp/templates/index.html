@@ -4,6 +4,9 @@
     <title>My App</title>
     <link rel="stylesheet" href="/myapp/static/css/styles.css">
   </head>
+  <header>
+    {% include "includes/header.html" %}
+  </header>
   <body>
     <h1>Hello FastAPI</h1>
     {{ script|safe }}
