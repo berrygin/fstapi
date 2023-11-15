@@ -6,7 +6,8 @@
   </head>
   <body>
     <h1>Hello FastAPI</h1>
-    <p>{{ name }}</p>
+    {{ script|safe }}
+    <!-- <p>{{ name }}</p> -->
     <!-- <script src="/static/js/script.js"></script> -->
   </body>
 </html>
