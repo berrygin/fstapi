@@ -1,11 +1,15 @@
-.header-bar {background: greenyellow;}
+header {background: #adff2f;}
 
-body {
+main {
   display: flex;
 }
 
-.sidebar {
+nav {
   width: 200px; /* サイドバーの幅を設定 */
   background-color: #f0f0f0; /* サイドバーの背景色を設定 */
   padding: 20px; /* サイドバーの内側の余白を設定 */
+}
+
+section {
+  padding: 16px;
 }
