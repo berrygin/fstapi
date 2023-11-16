@@ -2,7 +2,10 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.middleware.cors import CORSMiddleware
+
+import pandas as pd
+from starlette.middleware.cors import CORSMiddleware
+
 import panel as pn
 from bokeh.embed import server_document
 
@@ -11,7 +14,7 @@ from sliders2.pn_app2 import createApp2
 
 app = FastAPI()
 origins = [
-    "https://localhost.tiangolo.com",
+    "https://zui-fastapi-test.onrender.com",
     "http://127.0.0.1:5000",
     "http://127.0.0.1:10000",
 ]
@@ -22,6 +25,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 app.mount(path='/static', app=StaticFiles(directory='static'), name='static')
 templates = Jinja2Templates(directory='templates')
@@ -42,12 +46,17 @@ async def bkapp_page2(request: Request):
     script = server_document('http://127.0.0.1:5000/app2')
     return templates.TemplateResponse("page.html", {"request": request, "script": script})
 
+
 pn.serve({'/app': createApp, '/app2': createApp2},
-        port=5000, allow_websocket_origin=["127.0.0.1:10000"],
+        port=5000,
+        # allow_websocket_origin=["*"],
+        allow_websocket_origin=["127.0.0.1:10000"],
         address="0.0.0.0", 
         # xheaders=True,
-        show=False)
-        # address="127.0.0.1", show=False)
+        # threaded=True,
+        verbose=True,
+        show=False
+        )
 
 # async def read_root(name: str, request: Request):
 #     context = {
