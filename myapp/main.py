@@ -6,12 +6,12 @@ from fastapi.templating import Jinja2Templates
 import panel as pn
 from bokeh.embed import server_document
 
-from myapp.sliders.pn_app import createApp
-from myapp.sliders2.pn_app2 import createApp2
+from sliders.pn_app import createApp
+from sliders2.pn_app2 import createApp2
 
 app = FastAPI()
-app.mount(path='/myapp/static', app=StaticFiles(directory='myapp/static'), name='static')
-templates = Jinja2Templates(directory='myapp/templates')
+app.mount(path='/static', app=StaticFiles(directory='static'), name='static')
+templates = Jinja2Templates(directory='templates')
 
 
 # @app.get('/', response_class=HTMLResponse)
@@ -30,7 +30,7 @@ async def bkapp_page2(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "script": script})
 
 pn.serve({'/app': createApp, '/app2': createApp2},
-        port=5000, allow_websocket_origin=["0.0.0.0:8000"],
+        port=5000, allow_websocket_origin=["127.0.0.1:8000"],
         address="0.0.0.0", show=False)
         # address="127.0.0.1", show=False)
 

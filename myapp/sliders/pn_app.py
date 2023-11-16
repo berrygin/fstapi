@@ -1,6 +1,6 @@
 import panel as pn
 
-from myapp.sliders.sinewave import SineWave
+from .sinewave import SineWave
 
 def createApp():
     sw = SineWave()
