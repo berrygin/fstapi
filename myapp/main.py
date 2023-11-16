@@ -3,6 +3,9 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from starlette.middleware.cors import CORSMiddleware
+# from starlette.middleware import Middleware
+
 import panel as pn
 from bokeh.embed import server_document
 
@@ -10,6 +13,15 @@ from sliders.pn_app import createApp
 from sliders2.pn_app2 import createApp2
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 app.mount(path='/static', app=StaticFiles(directory='static'), name='static')
 templates = Jinja2Templates(directory='templates')
 
@@ -21,12 +33,12 @@ templates = Jinja2Templates(directory='templates')
 
 @app.get("/")
 async def bkapp_page(request: Request):
-    script = server_document('http://0.0.0.0:5000/app')
+    script = server_document('http://127.0.0.1:5000/app')
     return templates.TemplateResponse("page.html", {"request": request, "script": script})
 
 @app.get("/app2")
 async def bkapp_page2(request: Request):
-    script = server_document('http://0.0.0.0:5000/app2')
+    script = server_document('http://127.0.0.1:5000/app2')
     return templates.TemplateResponse("index.html", {"request": request, "script": script})
 
 pn.serve({'/app': createApp, '/app2': createApp2},
