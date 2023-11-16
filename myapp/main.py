@@ -34,7 +34,7 @@ pn.serve({'/app': createApp, '/app2': createApp2},
         # allow_websocket_origin=["127.0.0.1:10000"],
         allow_websocket_origin=["0.0.0.0:5000"],
         address="0.0.0.0", 
-        xheaders=True,
+        # xheaders=True,
         verbose=True,
         show=True
         )
