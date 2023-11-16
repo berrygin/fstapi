@@ -21,12 +21,12 @@ templates = Jinja2Templates(directory='templates')
 
 @app.get("/")
 async def bkapp_page(request: Request):
-    script = server_document('http://127.0.0.1:5000/app')
+    script = server_document('http://0.0.0.0:5000/app')
     return templates.TemplateResponse("page.html", {"request": request, "script": script})
 
 @app.get("/app2")
 async def bkapp_page2(request: Request):
-    script = server_document('http://127.0.0.1:5000/app2')
+    script = server_document('http://0.0.0.0:5000/app2')
     return templates.TemplateResponse("index.html", {"request": request, "script": script})
 
 pn.serve({'/app': createApp, '/app2': createApp2},
@@ -34,8 +34,8 @@ pn.serve({'/app': createApp, '/app2': createApp2},
         allow_websocket_origin=["*"], # , "0.0.0.0:10000"],
         # allow_websocket_origin=["0.0.0.0:5000"],
         address="0.0.0.0", 
-        xheaders=True,
-        threaded=True,
+        # xheaders=True,
+        # threaded=True,
         verbose=True,
         show=False
         )
