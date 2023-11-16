@@ -27,10 +27,10 @@ async def bkapp_page(request: Request):
 @app.get("/app2")
 async def bkapp_page2(request: Request):
     script = server_document('http://127.0.0.1:5000/app2')
-    return templates.TemplateResponse("page.html", {"request": request, "script": script})
+    return templates.TemplateResponse("index.html", {"request": request, "script": script})
 
 pn.serve({'/app': createApp, '/app2': createApp2},
-        port=5000, allow_websocket_origin=["127.0.0.1:8000"],
+        port=5000, allow_websocket_origin=["0.0.0.0:8000"],
         address="0.0.0.0", show=False)
         # address="127.0.0.1", show=False)
 
