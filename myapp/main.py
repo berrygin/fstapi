@@ -12,6 +12,8 @@ from bokeh.embed import server_document
 from sliders.pn_app import createApp
 from sliders2.pn_app2 import createApp2
 
+import pandas as pd
+
 app = FastAPI()
 
 app.add_middleware(
@@ -38,7 +40,8 @@ async def bkapp_page(request: Request):
 
 @app.get("/app2")
 async def bkapp_page2(request: Request):
-    script = server_document('http://127.0.0.1:5000/app2')
+    # script = server_document('http://127.0.0.1:5000/app2')
+    script = pd.DataFrame([[1,2,3],[4,5,6]], columns=('a', 'b', 'c')).to_html()
     return templates.TemplateResponse("index.html", {"request": request, "script": script})
 
 pn.serve({'/app': createApp, '/app2': createApp2},
