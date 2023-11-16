@@ -30,11 +30,14 @@ async def bkapp_page2(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "script": script})
 
 pn.serve({'/app': createApp, '/app2': createApp2},
-        port=5000, allow_websocket_origin=["127.0.0.1:10000"],
+        port=5000, 
+        # allow_websocket_origin=["127.0.0.1:10000"],
+        allow_websocket_origin=["0.0.0.0:5000"],
         address="0.0.0.0", 
         xheaders=True,
-        show=False)
-        # address="127.0.0.1", show=False)
+        verbose=True,
+        show=True
+        )
 
 # async def read_root(name: str, request: Request):
 #     context = {
