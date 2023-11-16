@@ -33,7 +33,7 @@ templates = Jinja2Templates(directory='templates')
 
 @app.get("/")
 async def bkapp_page(request: Request):
-    script = server_document('http://127.0.0.1:5000/app')
+    script = server_document('https://zui-fastapi-test.onrender.com:5000/app')
     return templates.TemplateResponse("page.html", {"request": request, "script": script})
 
 @app.get("/app2")
